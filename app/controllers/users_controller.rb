@@ -15,8 +15,6 @@ class UsersController < ApplicationController
 
     def edit
         @user = User.find(params[:id])
-        
-    
     end
 
     def update
@@ -29,10 +27,13 @@ class UsersController < ApplicationController
         end
     end
 
-    def Show
-       
-      
+    def show
     end
+
+    def index
+        @users = User.all
+    end
+
 
     private
 
