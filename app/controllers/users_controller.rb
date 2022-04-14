@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+    before_action :set_user, only: [:show]
+    before_action :set_articles, only: [:show]
+
     def new
         @user = User.new
     end
@@ -26,10 +29,23 @@ class UsersController < ApplicationController
         end
     end
 
+    def Show
+       
+      
+    end
+
     private
 
     def user_params
         params.require(:user).permit(:username, :email, :password)
+    end
+
+    def set_user
+        @user = User.find(params[:id])
+    end
+
+    def set_articles
+        @articles = @user.articles
     end
 
 end
