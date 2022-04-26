@@ -1,14 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-strong">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <a class="navbar-brand" href="#"> </a>
+    <%= link_to 'BERETOR', root_path, class: "nav-link bg-strong" %> 
+    
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%= link_to 'Home', root_path, class: "nav-link" %> 
-        </li>
         <li class="nav-item">
           <%= link_to "Bloggers", users_path, class: "nav-link" %>
         </li>
@@ -17,19 +12,29 @@
           Articles
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <% if logged_in? %>
           <%= link_to "Create new article", new_article_path, class: "dropdown-item" %>
+          <% end %>
           <%= link_to "View articles", articles_path, class: "dropdown-item" %>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
         </li>
         <% if logged_in? %>
-        <li class="nav-item">
-        <%= link_to current_user.username, user_path(current_user), class: "nav-link" %> 
-      </li>
-        <li class="nav-item">
-          <%= link_to 'Log out', logout_path, class: "nav-link", method: :delete %> 
-        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Profile [<%= current_user.username %>]
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% if logged_in? %>
+            <%= link_to "View your profile", user_path(current_user), class: "dropdown-item" %>
+            <% end %>
+            <%= link_to "Edit your profiles", edit_user_path(current_user), class: "dropdown-item" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Log out', logout_path, class: "nav-link", method: :delete %> 
+          </li>
         <% else %>
         <li class="nav-item">
           <%= link_to 'Log in', login_path, class: "nav-link" %> 

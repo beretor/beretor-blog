@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
     before_action :set_user, only: [:show, :edit, :update]
     before_action :set_articles, only: [:show]
+    before_action :require_user, only: [:edit, :update]
+    before_action :require_same_user, only: [:edit, :update]
 
     def new
         @user = User.new
@@ -52,5 +54,13 @@ class UsersController < ApplicationController
     def set_articles
         @articles = @user.articles.paginate(page: params[:page], per_page: 2)
     end
+
+    def require_same_user
+        if current_user != @user
+          flash[:alert] = "you can only edit or delete your own user profile"
+          redirect_to @user
+        end
+      end
+
 
 end
