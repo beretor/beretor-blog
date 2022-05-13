@@ -7,6 +7,7 @@
         <li class="nav-item">
           <%= link_to "Bloggers", users_path, class: "nav-link" %>
         </li>
+        Articles
         <li class="nav-item">
           <% if logged_in? %>
           <%= link_to "Create new article", new_article_path, class: "dropdown-item" %>
@@ -16,9 +17,21 @@
           <%= link_to "View articles", articles_path, class: "dropdown-item" %>
           </li>
         </li>
+  
+
+        Categories
+        <li class="nav-item">
+          <% if logged_in? && current_user.admin? %>
+          <%= link_to "Create new category", new_category_path, class: "dropdown-item" %>
+          <% end %>
+          </li>
+          <li class="nav-item">
+          <%= link_to "View articles", articles_path, class: "dropdown-item" %>
+          </li>
+        </li>
+
         <% if logged_in? %>
 
-       
           <li class="nav-item">
             <%= "(Admin)" if current_user.admin? %>
             <%= link_to "View your profile", user_path(current_user), class: "dropdown-item" %>

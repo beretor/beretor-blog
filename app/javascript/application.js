@@ -2,6 +2,10 @@
 import "@hotwired/turbo-rails"  
 import "./controllers"  
 import * as bootstrap from "bootstrap"  
+
+import "popper"
+import "bootstrap"
+
 //= require rails-ujs
 //= require jquery3
 //= require popper
